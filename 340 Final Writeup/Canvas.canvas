@@ -1,0 +1,11 @@
+{
+	"nodes":[
+		{"id":"e4892c7d2612c8ac","x":-480,"y":-660,"width":620,"height":320,"type":"text","text":""},
+		{"id":"c9029ddf682aa2d0","x":-448,"y":-640,"width":328,"height":280,"type":"text","text":"Inventory Grid"},
+		{"id":"12e10b98dd77e5b9","x":-80,"y":-640,"width":187,"height":50,"type":"text","text":"Weapons"},
+		{"id":"1d9a6c0871d80f21","x":-80,"y":-580,"width":80,"height":218,"type":"text","text":""},
+		{"type":"text","text":"","id":"b77ebe617ad87a51","x":30,"y":-580,"width":77,"height":220},
+		{"id":"2563abbb80a24a1c","x":-249,"y":-710,"width":158,"height":50,"type":"text","text":"Inventory UI"}
+	],
+	"edges":[]
+}
