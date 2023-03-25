@@ -2,6 +2,10 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+
+#prevent breaking ToS with OdinInspector
+*/Sirenix/
+
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
