@@ -1,0 +1,14 @@
+{
+	"nodes":[
+		{"id":"410cd663b06f1ea6","x":-785,"y":120,"width":395,"height":240,"type":"text","text":"# Legend:\nSymbol|Meaning\n-|-\nREF|Reference\nRND|Randomized\nCND|Conditional"},
+		{"id":"4568bf47a9667cd2","x":-390,"y":-309,"width":290,"height":309,"type":"text","text":"## Part Instance\n- `REF` Part\n\t- `RND CND` Element (for blades)\n- `RND` Rarity\n- `REF CND` WeaponType (for core)"},
+		{"id":"88e116d07aa9a0ff","x":-712,"y":-309,"width":250,"height":309,"type":"text","text":"## Part\n- Values for each rarity level\n\t- damage\n\t- element\n\t- status chance\n\t- attack speed\n\t- attack range\n\t- peircing"},
+		{"id":"182b3d1d49a474e2","x":100,"y":-309,"width":250,"height":309,"type":"text","text":"## Weapon\n- Has all 4 parts "},
+		{"id":"304e3938c0e94a51","x":-712,"y":-600,"width":250,"height":240,"type":"text","text":"## Weapon Type\n- Base stats\n- The weapon type\n- The projectile used"}
+	],
+	"edges":[
+		{"id":"34681e30fda6f15d","fromNode":"88e116d07aa9a0ff","fromSide":"right","toNode":"4568bf47a9667cd2","toSide":"left"},
+		{"id":"1ad23bd74db183a0","fromNode":"4568bf47a9667cd2","fromSide":"right","toNode":"182b3d1d49a474e2","toSide":"left"},
+		{"id":"ee94441265fd1604","fromNode":"304e3938c0e94a51","fromSide":"right","toNode":"4568bf47a9667cd2","toSide":"top"}
+	]
+}

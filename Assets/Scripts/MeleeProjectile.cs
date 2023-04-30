@@ -7,7 +7,7 @@ public class MeleeProjectile : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask targetLayer;
     //public bool ignoreFriendlyCollision = true;
-
+    public ParticleSystem onDestroyParticle;
 
     public float percentLifeRemaining => Mathf.Clamp01(timeUntilDestroy / maxLifetime);
 
@@ -17,6 +17,11 @@ public class MeleeProjectile : MonoBehaviour
     public float maxLifetime;
     public float timeUntilDestroy;
     public Vector2 dir;
+
+
+
+    public Vector2 inheritedVel;
+    public float speedMulti = 1;
 
     Rigidbody2D rb;
 
@@ -36,7 +41,7 @@ public class MeleeProjectile : MonoBehaviour
     protected void UpdateVelocity()
     {
         float vel = maxDist / maxLifetime;
-        rb.velocity = dir * vel * velCurve.Evaluate(percentLifeRemaining);
+        rb.velocity = dir * vel * velCurve.Evaluate(percentLifeRemaining) * speedMulti + inheritedVel;
     }
     protected void UpdateRotation()
     {
@@ -58,12 +63,23 @@ public class MeleeProjectile : MonoBehaviour
         UpdateRotation();
     }
 
+    public void SetVelocity(Vector2 dir, float maxDist, float maxLifetime, float velMulti)
+    {
+        SetVelocity(dir, maxDist, maxLifetime);
+        speedMulti = velMulti;
+    }
+    public void SetVelocity(Vector2 dir, float maxDist, float maxLifetime, Vector2 inheritedVel)
+    {
+        SetVelocity(dir, maxDist, maxLifetime);
+        this.inheritedVel = inheritedVel;
+    }
+
     public void SetLayers(LayerMask groundLayer, LayerMask targetLayer)
     {
         this.groundLayer = groundLayer;
         this.targetLayer = targetLayer;
     }
-    
+
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
         var colLayer = collider.gameObject.layer;
@@ -94,5 +110,10 @@ public class MeleeProjectile : MonoBehaviour
     public static bool LayerIsInMask(int layer, LayerMask mask)
     {
         return mask == (mask | (1 << layer));
+    }
+    public void OnDestroy()
+    {
+        if (Application.isPlaying)
+            Instantiate(onDestroyParticle, transform.position, transform.rotation).gameObject.SetActive(true);
     }
 }

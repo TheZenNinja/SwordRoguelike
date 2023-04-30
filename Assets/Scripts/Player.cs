@@ -22,8 +22,9 @@ public class Player : MonoBehaviour
     [Header("References")]
     [SerializeField] Camera mainCamera;
     [SerializeField] SpriteRenderer playerSprite;
-    [SerializeField] Animator playerSpriteAnimator;
+    //[SerializeField] Animator playerSpriteAnimator;
     Rigidbody2D rb;
+    public Vector2 velocity => rb.velocity;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,17 +39,16 @@ public class Player : MonoBehaviour
         flipped = GetMousePositionWorld().x < transform.position.x;
         playerSprite.flipX = flipped;
 
-        playerSpriteAnimator.SetBool("Walk", moveVel.sqrMagnitude > minSpeedForAnim);
+        //playerSpriteAnimator.SetBool("Walk", moveVel.sqrMagnitude > minSpeedForAnim);
     }
 
 
     private void FixedUpdate()
     {
-
         Vector2 goalVel = moveInput.action.ReadValue<Vector2>().normalized * speed;
 
         moveVel = Vector2.Lerp(moveVel, goalVel, Time.fixedDeltaTime * accel);
-
+        Debug.Log(moveVel);
         rb.velocity = moveVel;
     }
 

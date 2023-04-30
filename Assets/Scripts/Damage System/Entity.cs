@@ -35,15 +35,13 @@ public class Entity : MonoBehaviour
         if (debugFlags.logOnHit)
             Debug.Log($"{gameObject.name} took damage:" +
                 $"\n\tElement: {dmgCont.element}" +
-                $"\n\tInflicted Status: {dmgCont.inflictStatus}" +
-                $"\n\tImpact: {dmgCont.impact}");
+                $"\n\tInflicted Status: {dmgCont.inflictStatus}");
 
         float dmg = dmgCont.damage;
 
         if (isFrozen)
         {
-            float shatterDmg = Mathf.RoundToInt(ElementalFunctions.I_GetShatterDamage(dmg, dmgCont.impact));
-            TakeDamage(shatterDmg, DamageSourceType.shatter);
+            TakeDamage(dmg * .25f, DamageSourceType.shatter);
             isFrozen = false;
         }
 
