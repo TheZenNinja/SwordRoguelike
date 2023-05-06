@@ -5,6 +5,7 @@
 
 #prevent breaking ToS with OdinInspector
 Sirenix/
+Plugins/
 
 /[Ll]ibrary/
 /[Tt]emp/
