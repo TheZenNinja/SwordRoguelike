@@ -31,7 +31,7 @@ public static class ElementalFunctions
         return (10 * Mathf.Log(2 * damage + 5) - 16) * impact;
     }
     #region Lightning
-    public static readonly int L_MaxLightningChain = 3;
+    /*public static readonly int L_MaxLightningChain = 3;
     public static readonly float L_LightningChainRange = 4;
     public static readonly float L_LightningDamageMulti = .6f;
 
@@ -110,7 +110,7 @@ public static class ElementalFunctions
             entities.RemoveAt(0);
             if (entities.Count == 0)
                 break;
-        }*/
-    }
+        }* / 
+    }*/
     #endregion
 }

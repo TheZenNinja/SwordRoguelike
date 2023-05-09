@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8413173037690273269}
   - component: {fileID: 8111025221857330239}
   - component: {fileID: 7021591908520210157}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OnDestroy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4882,7 +4882,7 @@ GameObject:
   - component: {fileID: 2093286566118460406}
   - component: {fileID: 194573357186066902}
   - component: {fileID: 389398936817593980}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerMeleeProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4946,10 +4946,10 @@ MonoBehaviour:
     inflictStatus: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   onDestroyParticle: {fileID: 8111025221857330239}
   velCurve:
     serializedVersion: 2
@@ -5022,7 +5022,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6607596743836461269}
   - component: {fileID: 3643512616662680618}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5107,7 +5107,7 @@ GameObject:
   - component: {fileID: 9007563362456889927}
   - component: {fileID: 5212138760771069942}
   - component: {fileID: 892491023228879554}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

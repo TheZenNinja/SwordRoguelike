@@ -49,7 +49,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "New Combat system.md",
+                "file": "Presentation notes.md",
                 "mode": "source",
                 "source": false
               }
@@ -125,6 +125,14 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "76eecc30cd71bdb3",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ]
       }
@@ -146,7 +154,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "New Combat system.md",
+                "file": "Presentation notes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -163,7 +171,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "New Combat system.md",
+                "file": "Presentation notes.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -186,7 +194,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "New Combat system.md"
+                "file": "Presentation notes.md"
               }
             }
           }
@@ -209,11 +217,11 @@
   },
   "active": "eefb25e5e4c92024",
   "lastOpenFiles": [
-    "Ideas.md",
+    "Weapon Data Structure.md",
     "New Combat system.md",
+    "Ideas.md",
     "Presentation notes.md",
     "MVP.md",
-    "Weapon Data Structure.md",
     "Requirements.md",
     "Data Structure.canvas",
     "Random data arch notes.md",

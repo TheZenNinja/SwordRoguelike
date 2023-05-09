@@ -3,5 +3,5 @@
     Physical,
     Fire,
     Ice,
-    Lightning,
+    //Lightning,
 }

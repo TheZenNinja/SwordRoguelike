@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76eed6d598c7a341bbc427df3e668cd, type: 3}
+  m_Name: Spear Weapon Data
+  m_EditorClassIdentifier: 
+  dmg: 12
+  statusChance: 0.1
+  speed: 16
+  returnDmgMulti: 1.2
+  ammo: 1
+  piercing: 1
+  bouncing: 0
+  prefab: {fileID: 4769378973815347976, guid: 7b580e8a24e0fbc45b426602d1d9d2ff, type: 3}

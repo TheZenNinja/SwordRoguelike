@@ -5,7 +5,7 @@ public class Entity : MonoBehaviour
 {
     public Vector2 position => transform.position;
 
-    [field:SerializeField]
+    [field: SerializeField]
     public int Health { get; protected set; }
     public float HealthPercent => (float)Health / maxHealth;
     [SerializeField] protected int maxHealth;
@@ -15,13 +15,15 @@ public class Entity : MonoBehaviour
     [Header("Status Effects")]
     protected bool isBurning;
     protected bool isFrozen;
+    public bool IsFrozen => isFrozen;
 
     [Header("Debug")]
     [SerializeField]
     protected DebugFlags debugFlags;
     [System.Serializable]
-    protected class DebugFlags {
-        public bool showLightningRange = false;
+    protected class DebugFlags
+    {
+        //public bool showLightningRange = false;
         public bool logOnHit = false;
     }
 
@@ -58,12 +60,10 @@ public class Entity : MonoBehaviour
                 case ElementalType.Ice:
                     Freeze(dmgCont);
                     break;
-                case ElementalType.Lightning:
-                    ElementalFunctions.L_ChainLightning(this, dmgCont);
-                    break;
+                    //case ElementalType.Lightning:
+                    //    ElementalFunctions.L_ChainLightning(this, dmgCont);
+                    //    break;
             }
-
-        
 
         return TakeDamage(dmg);
     }
@@ -99,7 +99,7 @@ public class Entity : MonoBehaviour
         }
         isBurning = false;
     }
-    
+
     public void Freeze(DamageContainer dmgCont)
     {
         //yield return 0; // wait until next frame. we want to freeze them after they take damage
@@ -110,10 +110,10 @@ public class Entity : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (debugFlags.showLightningRange)
-        {
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawWireSphere(transform.position, ElementalFunctions.L_LightningChainRange);
-        }
+        //if (debugFlags.showLightningRange)
+        //{
+        //    Gizmos.color = Color.magenta;
+        //    Gizmos.DrawWireSphere(transform.position, ElementalFunctions.L_LightningChainRange);
+        //}
     }
 }

@@ -1,32 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    #region Singleton
-    public static GameManager instance;
-    private void Awake()
+    public InputActionReference pauseKey;
+
+    //TODO impliment pause
+    //public bool paused;
+    //public GameObject pauseScreen;
+
+    private void Start()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(this);
-    }
-    #endregion
-
-    public System.Action onGameTick;
-
-    public static readonly int TICKS_PER_SEC = 20;
-
-    void Start()
-    {
-        StartCoroutine(GameTickPulse());
+        //paused = false;
+        pauseKey.action.performed += ctx => TogglePause();
     }
 
-    IEnumerator GameTickPulse()
+    private void TogglePause()
     {
-        yield return new WaitForSeconds(1f/TICKS_PER_SEC);
-        onGameTick?.Invoke();
+        SceneManager.LoadScene("MainMenu");
+
+        //paused = !paused;
+        //Time.timeScale = paused ? 1f : 0f;
     }
 }

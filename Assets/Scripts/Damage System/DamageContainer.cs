@@ -17,4 +17,5 @@ public struct DamageContainer
         this.element = element;
         this.inflictStatus = inflictStatus;
     }
+    public static implicit operator DamageContainer(int i) => new DamageContainer(i);
 }
