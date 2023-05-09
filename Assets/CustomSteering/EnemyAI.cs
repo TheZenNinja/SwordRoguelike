@@ -82,8 +82,12 @@ namespace ContextSteering
             if (currentAtkDelay > 0)
                 currentAtkDelay -= Time.fixedDeltaTime;
         }
-
         public void FindTarget()
+        {
+            lastKnownPlayerLoc = player.position;
+        }
+        //Not Needed because of new gameplay loop
+        /*public void FindTarget()
         {
             try
             {
@@ -107,7 +111,7 @@ namespace ContextSteering
             if (hit.collider != null && hit.collider.gameObject == target)
                 return true;
             return false;
-        }
+        }*/
         public void GetNearbyAI()
         {
             //TODO convert to collider with OnEnter and OnExit methods?
@@ -142,9 +146,10 @@ namespace ContextSteering
         {
             if (player == null ||
                 Vector2.Distance(transform.position, player.position) > attackDistance ||
-                entity.IsFrozen ||
                 !canFireProjectile)
                 return;
+
+            currentAtkDelay = attackDelay;
 
             var dir = (player.position - transform.position).normalized;
             var p = Instantiate(projectile, transform.position, Quaternion.identity, null);

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,6 +12,8 @@ namespace CombatSystem
         Player player;
         public List<WeaponProjectile> wepProjectiles;
 
+        public float pickupRange = 1;
+
         [Header("Idle Anim Stuff")]
         public float hoverDistance = 2;
         public float angleOffset;
@@ -20,10 +21,12 @@ namespace CombatSystem
 
         public InputActionReference attack;
         public InputActionReference returnWeapon;
+        public InputActionReference pickupWeapon;
 
         void Start()
         {
             player = GetComponentInParent<Player>();
+
             GenWep();
         }
 
@@ -34,8 +37,28 @@ namespace CombatSystem
                 Launch();
             if (returnWeapon.action.triggered)
                 Return();
-            
+            if (pickupWeapon.action.triggered)
+                TryToPickupWeapon();
+
             IdleAnim();
+        }
+
+
+
+        void TryToPickupWeapon()
+        {
+            var objs = Physics2D.OverlapCircleAll(transform.position, pickupRange);
+
+            foreach (var o in objs)
+            {
+                var wep = o.GetComponent<WeaponItem>();
+                if (wep != null)
+                {
+                    LoadWeapons(wep.weapon);
+                    Destroy(wep.gameObject);
+                    break;
+                }
+            }
         }
 
         [ContextMenu("Generate Weapon")]
@@ -48,6 +71,12 @@ namespace CombatSystem
 
         void LoadWeapons(WeaponInstance wep)
         {
+            if (wepProjectiles.Count > 0)
+                foreach (var w in wepProjectiles)
+                    Destroy(w.gameObject);
+            wepProjectiles.Clear();
+
+
             weaponInstance = wep;
 
             if (wepProjectiles.Count > 0)
@@ -92,9 +121,11 @@ namespace CombatSystem
         void Return()
         {
             if (wepProjectiles.Exists(x => x.isShot))
-                wepProjectiles.ForEach((x) => {
+                wepProjectiles.ForEach((x) =>
+                {
                     if (x.isShot)
-                        x.Recall(); });
+                        x.Recall();
+                });
         }
     }
 }

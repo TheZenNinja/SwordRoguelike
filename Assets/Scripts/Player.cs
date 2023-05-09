@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -29,6 +31,8 @@ public class Player : MonoBehaviour
     [SerializeField] Camera mainCamera;
     [SerializeField] SpriteRenderer playerSprite;
     [SerializeField] Animator animator;
+    [SerializeField] Entity playerEntity;
+    [SerializeField] RectTransform HPBar;
     Rigidbody2D rb;
 
     public Vector2 velocity => rb.velocity;
@@ -41,6 +45,7 @@ public class Player : MonoBehaviour
 
         currentCooldown = 0;
         canMove = true;
+        playerEntity.onDie += () => SceneManager.LoadScene("MainMenu");
     }
 
     // Update is called once per frame
@@ -53,6 +58,8 @@ public class Player : MonoBehaviour
 
         if (dodge.action.triggered && canDodge)
             StartCoroutine(Dodge());
+
+        HPBar.localScale = new Vector3(playerEntity.HealthPercent, 1, 1);
     }
 
     IEnumerator Dodge()

@@ -1,3 +1,13 @@
+- # TO FIX
+	- enemy not stopping 
+	- fix weapon trails
+	- add more particles
+	- add sounds and music
+	- add text for hp values
+
+
+
+
 - explain extension functions
 - explain operator overriding
 - explain `var`

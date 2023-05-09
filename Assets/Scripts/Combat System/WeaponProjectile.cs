@@ -112,7 +112,7 @@ namespace CombatSystem
                 Entity entity;
                 if (collider.hasComponent(out entity))
                 {
-                    Debug.Log(entity.gameObject.name);
+                    //Debug.Log(entity.gameObject.name);
                     OnHitTarget(entity);
                 }
             }

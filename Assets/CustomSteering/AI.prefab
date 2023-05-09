@@ -87,18 +87,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
-  searchRadius: 5
+  searchRadius: 10
   stopDistance: 2
   minMoveDist: 0.1
-  moveSpeed: 6
+  moveSpeed: 4
   moveAccel: 6
   minMoveSpeedToAnimate: 0.1
   updateRate: 0.05
+  attackDistance: 4
+  attackDelay: 3
+  projectile: {fileID: 7935793190462622158, guid: 8742f78d2322ca643ae26f655846339b, type: 3}
+  projectileSpeed: 6
   player: {fileID: 0}
   isInLoS: 0
   lastKnownPlayerLoc: {x: 0, y: 0}
   goalPosition: {x: 0, y: 0}
   distToTarget: 0
+  entity: {fileID: 5515102182225297643}
   ctxSteering: {fileID: 5526994026919032363}
   terrainMask:
     serializedVersion: 2

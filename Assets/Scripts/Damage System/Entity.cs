@@ -11,11 +11,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected int maxHealth;
 
     public System.Action onDie;
-
-    [Header("Status Effects")]
-    protected bool isBurning;
-    protected bool isFrozen;
-    public bool IsFrozen => isFrozen;
+    public System.Action<Entity> onDieE;
 
     [Header("Debug")]
     [SerializeField]
@@ -41,30 +37,6 @@ public class Entity : MonoBehaviour
 
         float dmg = dmgCont.damage;
 
-        if (isFrozen)
-        {
-            TakeDamage(dmg * .25f, DamageSourceType.shatter);
-            isFrozen = false;
-        }
-
-        if (dmgCont.inflictStatus)
-            switch (dmgCont.element)
-            {
-                default:
-                case ElementalType.Physical:
-                    dmg *= ElementalFunctions.P_CritDamageMulti;
-                    break;
-                case ElementalType.Fire:
-                    Burn(dmgCont);
-                    break;
-                case ElementalType.Ice:
-                    Freeze(dmgCont);
-                    break;
-                    //case ElementalType.Lightning:
-                    //    ElementalFunctions.L_ChainLightning(this, dmgCont);
-                    //    break;
-            }
-
         return TakeDamage(dmg);
     }
     protected bool TakeDamage(float damage, DamageSourceType damageSource = DamageSourceType.attack)
@@ -77,43 +49,9 @@ public class Entity : MonoBehaviour
         {
             Health = 0;
             onDie?.Invoke();
+            onDieE?.Invoke(this);
             return true;
         }
         return false;
-    }
-
-    public void Burn(DamageContainer dmgCont)
-    {
-        if (isBurning)
-            StopCoroutine(nameof(BurnRoutine));
-        Burn(dmgCont);
-    }
-    protected IEnumerator BurnRoutine(DamageContainer dmgCont)
-    {
-        isBurning = true;
-        float dmg = ElementalFunctions.F_GetBurnDamage(dmgCont);
-        for (int i = 0; i < ElementalFunctions.F_MaxBurnTicks; i++)
-        {
-            yield return new WaitForSeconds(ElementalFunctions.F_TimeBetweenBurnTicks);
-            TakeDamage(dmg, DamageSourceType.burning);
-        }
-        isBurning = false;
-    }
-
-    public void Freeze(DamageContainer dmgCont)
-    {
-        //yield return 0; // wait until next frame. we want to freeze them after they take damage
-        isFrozen = true;
-    }
-
-    public float SqrDistFromTarget(Vector2 goalPos) => (transform.position.ToV2() - goalPos).sqrMagnitude;
-
-    private void OnDrawGizmosSelected()
-    {
-        //if (debugFlags.showLightningRange)
-        //{
-        //    Gizmos.color = Color.magenta;
-        //    Gizmos.DrawWireSphere(transform.position, ElementalFunctions.L_LightningChainRange);
-        //}
     }
 }

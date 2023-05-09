@@ -5,13 +5,11 @@ namespace CombatSystem
 {
     public class Projectile : MonoBehaviour
     {
-        public DamageContainer damage;
         public float speed;
         Rigidbody2D rb;
-        private LayerMask targetLayer, groundLayer;
+        public LayerMask targetLayer, groundLayer;
 
-        // Use this for initialization
-        void Start()
+        void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
         }
@@ -35,7 +33,6 @@ namespace CombatSystem
                 Entity entity;
                 if (collider.hasComponent(out entity))
                 {
-                    Debug.Log(entity.gameObject.name);
                     OnHitTarget(entity);
                 }
             }
@@ -45,7 +42,8 @@ namespace CombatSystem
         protected virtual void OnHitTerrain(Collider2D collider) => Destroy(gameObject);
         protected virtual void OnHitTarget(Entity entity)
         {
-            entity.Damage(damage);
+            Debug.Log($"Hit {entity.gameObject.name}");
+            entity.Damage(1);
             Destroy(gameObject);
         }
 
@@ -58,6 +56,7 @@ namespace CombatSystem
         public void SetDir(Vector2 dir)
         {
             rb.velocity = dir * speed;
+            Destroy(gameObject, 5);
         }
     }
 }
