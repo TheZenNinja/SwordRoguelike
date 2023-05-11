@@ -19,6 +19,7 @@ namespace CombatSystem
         public float angleOffset;
         public float angleOffsetChange;
 
+        [Header("Inputs")]
         public InputActionReference attack;
         public InputActionReference returnWeapon;
         public InputActionReference pickupWeapon;
@@ -32,9 +33,9 @@ namespace CombatSystem
         void Update()
         {
             if (attack.action.triggered)
-                Launch();
+                Shoot();
             if (returnWeapon.action.triggered)
-                Return();
+                Recall();
             if (pickupWeapon.action.triggered)
                 TryToPickupWeapon();
 
@@ -60,27 +61,21 @@ namespace CombatSystem
         }
 
         [ContextMenu("Generate Weapon")]
-        void GenWep() => LoadWeapons(GenRandomWep());
-
-        WeaponInstance GenRandomWep() => WeaponGenerator.GenerateWeapon(weaponBase);
-
+        void GenRandomWep() => LoadWeapons(WeaponGenerator.GenerateWeapon(weaponBase));
         [ContextMenu("Reload Weapon")]
         void ReloadWeapon() => LoadWeapons(weaponInstance);
 
         public void LoadWeapons(WeaponInstance wep)
         {
+            //clear current weapons
             if (wepProjectiles.Count > 0)
                 foreach (var w in wepProjectiles)
                     Destroy(w.gameObject);
             wepProjectiles.Clear();
 
-
             weaponInstance = wep;
 
-            if (wepProjectiles.Count > 0)
-                wepProjectiles.ForEach(x => Destroy(x.gameObject));
-            wepProjectiles.Clear();
-
+            //instantiate weapons
             for (int i = 0; i < wep.Ammo; i++)
             {
                 var w = Instantiate(wep.Prefab, transform.position, Quaternion.identity);
@@ -92,14 +87,16 @@ namespace CombatSystem
         void IdleAnim()
         {
             var idleWeps = wepProjectiles.Where(w => w.isIdle);
-            if (idleWeps.Count() == 0)
+            int numWeps = idleWeps.Count();
+
+            if (numWeps == 0)
                 return;
+            
             angleOffset += angleOffsetChange * Time.deltaTime;
             if (angleOffset > 360)
                 angleOffset -= 360;
 
-            int numWeps = idleWeps.Count();
-
+            //get evenly divided points on a circle
             for (int i = 0; i < numWeps; i++)
             {
                 var angle = (360f * i / numWeps + angleOffset) * Mathf.Deg2Rad;
@@ -108,7 +105,8 @@ namespace CombatSystem
                 idleWeps.ElementAt(i).MoveTowards(transform.TransformPoint(goal));
             }
         }
-        void Launch()
+
+        void Shoot()
         {
             var idleWeps = wepProjectiles.Where(w => w.isIdle);
             if (idleWeps.Count() == 0)
@@ -116,7 +114,7 @@ namespace CombatSystem
 
             idleWeps.ElementAt(0).ShootProjectile(player.GetMousePositionWorld());
         }
-        void Return()
+        void Recall()
         {
             if (wepProjectiles.Exists(x => x.isShot))
                 wepProjectiles.ForEach((x) =>

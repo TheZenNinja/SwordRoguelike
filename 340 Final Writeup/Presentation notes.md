@@ -25,11 +25,21 @@
 - explain operator overriding
 - explain `var`
 - Scripts to show
-	- weapon system
+	- `WeaponController`
+		- Spawning & cirlcing
+	- `ContextSteering`
+	- `EnemyAI`
+	- `WeaponProjectile`
+	- `GameManager`
+		- enemy spawning
 	- how AI works
 		- explain dot product
-	- old dungeon gen script?
+	- show old dungeon gen script?
 	- [GameAIPro2_Chapter18_Context_Steering_Behavior-Driven_Steering_at_the_Macro_Scale.pdf](http://www.gameaipro.com/GameAIPro2/GameAIPro2_Chapter18_Context_Steering_Behavior-Driven_Steering_at_the_Macro_Scale.pdf)
+
+
+
+
 - ## Todo
 	- more interesting combat mechanics
 		- weapon switching

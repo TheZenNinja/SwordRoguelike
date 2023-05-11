@@ -19,6 +19,7 @@ namespace ContextSteering
             new Vector2 (-1,    1).normalized,
         };
     }
+
     [ExecuteAlways]
     public class ContextSteeringV2 : MonoBehaviour
     {
@@ -62,7 +63,8 @@ namespace ContextSteering
 
         public Vector2 GetGoalDirection(Vector2 goalPosition)
         {
-            EvaluatePlayerGoal((goalPosition - transform.position.ToV2()).normalized);
+            var goalDir = (goalPosition - transform.position.ToV2()).normalized;
+            EvaluatePlayerGoal(goalDir);
             EvaluateObstacle();
             EvaluateAvoidAI();
             finalDirection = GetFinalDir();
@@ -74,24 +76,25 @@ namespace ContextSteering
         {
             totalWeights = new float[NUM_DIRS];
 
+            //sum up the weights
             for (int i = 0; i < NUM_DIRS; i++)
             {
                 var inverseWeights = wallAvoidWeights[i] + aiAvoidWeights[i];
 
                 totalWeights[i] += targetDirWeights[i];
+                //go in the opposite direction of the weights to avoid
                 totalWeights[GetMirror(i)] += inverseWeights;
             }
 
+            //get the max value
             float maxValue = 0;
             for (int i = 0; i < NUM_DIRS; i++)
                 if (totalWeights[i] > maxValue)
                     maxValue = totalWeights[i];
 
-
+            //divide all weights by the max value to normalize it
             for (int i = 0; i < NUM_DIRS; i++)
-            {
                 totalWeights[i] = Mathf.Clamp01(totalWeights[i] / maxValue);
-            }
 
             return GetNormalizedDir(totalWeights);
         }
@@ -124,6 +127,7 @@ namespace ContextSteering
         {
             aiAvoidWeights = EvaluateList(nearbyAI.Select(x => x.ClosestPoint(transform.position)).ToArray(), proximityRadius, aiAvoidRadius);
         }
+
         public float[] EvaluateList(Vector2[] points, float minRange, float maxRange)
         {
             var weights = new float[NUM_DIRS];

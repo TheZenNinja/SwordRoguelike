@@ -92,6 +92,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6168581699311528493}
     - target: {fileID: 6543726146605940634, guid: 6362999a46496be4b84a417a8431380a, type: 3}
+      propertyPath: idleDir.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6543726146605940634, guid: 6362999a46496be4b84a417a8431380a, type: 3}
       propertyPath: returnAccel
       value: 4
       objectReference: {fileID: 0}
