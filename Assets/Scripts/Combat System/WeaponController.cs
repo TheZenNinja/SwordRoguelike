@@ -26,8 +26,6 @@ namespace CombatSystem
         void Start()
         {
             player = GetComponentInParent<Player>();
-
-            GenWep();
         }
 
 
@@ -69,7 +67,7 @@ namespace CombatSystem
         [ContextMenu("Reload Weapon")]
         void ReloadWeapon() => LoadWeapons(weaponInstance);
 
-        void LoadWeapons(WeaponInstance wep)
+        public void LoadWeapons(WeaponInstance wep)
         {
             if (wepProjectiles.Count > 0)
                 foreach (var w in wepProjectiles)

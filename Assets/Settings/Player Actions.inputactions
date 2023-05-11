@@ -160,6 +160,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d9cc88db-6820-46bf-9559-6d07053f1ae3",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5324ad67-42c7-49bc-8001-043e201f7c1f",
                     "path": "<Keyboard>/space",
                     "interactions": "",

@@ -9,6 +9,7 @@ public class Entity : MonoBehaviour
     public int Health { get; protected set; }
     public float HealthPercent => (float)Health / maxHealth;
     [SerializeField] protected int maxHealth;
+    public int MaxHealth => maxHealth;
 
     public System.Action onDie;
     public System.Action<Entity> onDieE;
@@ -27,7 +28,11 @@ public class Entity : MonoBehaviour
     {
         Health = maxHealth;
     }
-
+    public void SetMaxHP(int maxHP)
+    {
+        this.maxHealth = maxHP;
+        this.Health = maxHP;
+    }
     public bool Damage(DamageContainer dmgCont)
     {
         if (debugFlags.logOnHit)

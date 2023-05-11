@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -33,6 +34,8 @@ public class Player : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Entity playerEntity;
     [SerializeField] RectTransform HPBar;
+    [SerializeField] TextMeshProUGUI hpTxt;
+    [SerializeField] TrailRenderer trail;
     Rigidbody2D rb;
 
     public Vector2 velocity => rb.velocity;
@@ -44,6 +47,7 @@ public class Player : MonoBehaviour
             mainCamera = Camera.main;
 
         currentCooldown = 0;
+        trail.emitting = false;
         canMove = true;
         playerEntity.onDie += () => SceneManager.LoadScene("MainMenu");
     }
@@ -60,6 +64,7 @@ public class Player : MonoBehaviour
             StartCoroutine(Dodge());
 
         HPBar.localScale = new Vector3(playerEntity.HealthPercent, 1, 1);
+        hpTxt.text = $"{playerEntity.Health}/{playerEntity.MaxHealth}";
     }
 
     IEnumerator Dodge()
@@ -67,12 +72,14 @@ public class Player : MonoBehaviour
         var dir = moveInput.action.ReadValue<Vector2>().normalized;
         var vel = dodgeDistance / dodgeDuration;
 
-        canMove = false;
+        trail.emitting = true;
 
+        canMove = false;
         rb.velocity = dir * vel;
         yield return new WaitForSeconds(dodgeDuration);
-
         canMove = true;
+
+        trail.emitting = false;
 
         currentCooldown = dodgeCooldown;
     }

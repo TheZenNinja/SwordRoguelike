@@ -1,9 +1,22 @@
 - # TO FIX
-	- enemy not stopping 
-	- fix weapon trails
-	- add more particles
-	- add sounds and music
-	- add text for hp values
+	- [x] enemy not stopping 
+		- [ ] maybe?
+	- [x] fix weapon trails
+	- [ ] controls/help page
+	- [ ] add more particles
+		- [x] player dash
+		- [ ] kill
+		- [ ] enemy spawn
+	- [ ] wave popup
+		- [ ] kill count
+		- [ ] increasing HP
+	- [ ] add sounds and music
+		- [ ] woosh
+		- [ ] kill
+		- [ ] take damage
+		- [ ] music?
+		- [ ] settings
+	- [x] add text for hp values
 
 
 
@@ -27,6 +40,12 @@
 	- Optimazation
 	- other platforms
 	- better sprites
+- # Future Ideas
+	- turn it into a 3d FPS roguelike
+	- Elemental dmg system
+	- multiple equipable weapons and abilities
+	- crafting
+	- multiplayer?
 
 # 305 Notes
 - Issues
