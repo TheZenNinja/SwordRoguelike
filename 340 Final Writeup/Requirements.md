@@ -1,8 +1,0 @@
-- [ ] Documentation
-- [ ] Time
-	- [ ] 16 hrs
-	- [ ] summarize each finished system
-	- [ ] 2 weeks
-- [ ] NPCs use pathfinding algorithms/waypoints #pathfinding
-- [ ] Enemy AI interacts "convincingly" with the player #AI
-- [ ] Difficulty settings #difficulty
